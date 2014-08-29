@@ -31,3 +31,12 @@ var numericSearch = new NumericSearch { NumericType = typeof(decimal) }.GetExpre
 var result = data.Where(numericSearch).ToList();
 ```
 Filter is: _p => ((p.Amount >= 13) AndAlso (p.Amount <= 49))_
+
+Combined Filters Example
+------
+```C#
+var textFilter = new TextSearch().GetExpression<Individual>(x => x.Name.FirstName, Search.Comparators.Contains, "Daule");
+var dateFilter = new DateSearch().GetExpression<Individual>(x => x.DateOfBirth, Search.Comparators.IsSmaller, "1/1/2000");
+var filter = textFilter.AndAlso(dateFilter);
+```
+Filter is: _p => (((p.Name != null) AndAlso p.Name.FirstName.Contains("Daule")) AndAlso (TruncateTime(p.DateOfBirth) < 01/01/2000 12:00:00 AM))_
