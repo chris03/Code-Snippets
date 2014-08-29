@@ -9,7 +9,7 @@ namespace Chris03.CodeSnippets.LinqFilterExpressions
     /// <summary>
     /// Extension methods
     /// </summary>
-    internal static class SearchExpressionExtensions
+    public static class SearchExpressionExtensions
     {
         public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> expr1, Expression<Func<T, bool>> expr2)
         {
